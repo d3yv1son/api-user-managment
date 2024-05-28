@@ -1,4 +1,4 @@
-package com.fametro.usermanagement.controller;
+package com.fametro.usermanagement.Controller;
 
 import com.fametro.usermanagement.controller.dto.UserCreationDto;
 import com.fametro.usermanagement.controller.dto.UserDto;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class  UserController {
 
     private final UserService userService;
 
