@@ -1,12 +1,14 @@
 package com.fametro.usermanagement.entity;
 
+import jakarta.persistence.*;
+
 @Entity
-@TableName("roles")
+@Table(name = "roles")
 public class Roles {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;g
+    private Long id;
 
     private String role;
 

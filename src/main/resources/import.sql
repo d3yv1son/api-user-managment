@@ -7,3 +7,4 @@ INSERT INTO `users` (`id`,`email`,`password`,`name`) VALUES (4, "ruan@mail.com",
 INSERT INTO `users` (`id`,`email`,`password`,`name`) VALUES (5, "igor@mail.com", "igor123", "Igor Bennet");
 INSERT INTO `users` (`id`,`email`,`password`,`name`) VALUES (6, "laura@mail.com", "laura123", "Laura Beatriz");
 INSERT INTO `users` (`id`,`email`,`password`,`name`) VALUES (7, "keven@mail.com", "keven123", "Keven Anjos");
+

@@ -1,16 +1,15 @@
 package com.fametro.usermanagement.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name="UserAddress") //tabela no banco
-
+@Table(name = "userAddress")
 public class UserAddress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long id_address;
+//    private Long id_address;
 
     private String road;
     private int number;
@@ -22,12 +21,12 @@ public class UserAddress {
         this.complement = complement;
     }
 
-    public Long getId_address() {
-        return id_address;
-    }
-    public void setId_address(Long id_address) {
-        this.id_address;
-    }
+//    public Long getId_address() {
+//        return id_address;
+//    }
+//    public void setId_address(Long id_address) {
+//        this.id_address;
+//    }
 
     public String getRoad() {
         return road;

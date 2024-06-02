@@ -1,9 +1,9 @@
 package com.fametro.usermanagement.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name="UserHistoric")
+@Table(name="userHistoric")
 
 public class UserHistoric {
 
