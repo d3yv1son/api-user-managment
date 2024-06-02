@@ -2,6 +2,8 @@ package com.fametro.usermanagement.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -11,8 +13,8 @@ public class Role {
     private Long id;
     private String role;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "role")
-    private User user;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
+    private List<User> user;
 
     public Role() {}
 
@@ -36,11 +38,11 @@ public class Role {
         this.role = role;
     }
 
-    public User getUser() {
+    public List<User> getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(List<User> user) {
         this.user = user;
     }
 }
