@@ -1,10 +1,11 @@
---SELECT * FROM usermanagementdb.books
+INSERT INTO "roles" (`id`, `role`) VALUES (1, "ADMIN");
+INSERT INTO "roles" (`id`, `role`) VALUES (2, "USER");
 
-INSERT INTO `users` (`id`,`email`,`password`,`name`) VALUES (1, "deyvison@mail.com", "deyvison123", "Deyvison Silva");
-INSERT INTO `users` (`id`,`email`,`password`,`name`) VALUES (2, "eglany@mail.com", "eglany123", "Eglany Junior");
-INSERT INTO `users` (`id`,`email`,`password`,`name`) VALUES (3, "hudson@mail.com", "hudson123", "Hudson Freitas");
-INSERT INTO `users` (`id`,`email`,`password`,`name`) VALUES (4, "ruan@mail.com", "ruan123", "Ruan");
-INSERT INTO `users` (`id`,`email`,`password`,`name`) VALUES (5, "igor@mail.com", "igor123", "Igor Bennet");
-INSERT INTO `users` (`id`,`email`,`password`,`name`) VALUES (6, "laura@mail.com", "laura123", "Laura Beatriz");
-INSERT INTO `users` (`id`,`email`,`password`,`name`) VALUES (7, "keven@mail.com", "keven123", "Keven Anjos");
+INSERT INTO `users` (`id`,`email`,`password`,`name`,`telefone`,"id_role") VALUES (1, "deyvison@mail.com", "deyvison123", "Deyvison Silva", "90000-0000", 2);
+INSERT INTO `users` (`id`,`email`,`password`,`name`,`telefone`,"id_role") VALUES (2, "eglany@mail.com", "eglany123", "Eglany Junior", "90000-0000", 1);
+INSERT INTO `users` (`id`,`email`,`password`,`name`,`telefone`,"id_role") VALUES (3, "hudson@mail.com", "hudson123", "Hudson Freitas", "90000-0000", 2);
+INSERT INTO `users` (`id`,`email`,`password`,`name`,`telefone`,"id_role") VALUES (4, "ruan@mail.com", "ruan123", "Ruan", "90000-0000", 2);
+INSERT INTO `users` (`id`,`email`,`password`,`name`,`telefone`,"id_role") VALUES (5, "igor@mail.com", "igor123", "Igor Bennet", "90000-0000", 2);
+INSERT INTO `users` (`id`,`email`,`password`,`name`,`telefone`,"id_role") VALUES (6, "laura@mail.com", "laura123", "Laura Beatriz", "90000-0000", 2);
+INSERT INTO `users` (`id`,`email`,`password`,`name`,`telefone`,"id_role") VALUES (7, "keven@mail.com", "keven123", "Keven Anjos", "90000-0000", 2);
 

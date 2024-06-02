@@ -13,6 +13,11 @@ public class User {
     private String name;
     private String password;
     private String email;
+    private String telephone;
+
+    @OneToOne(optional = false)
+    @JoinColumn(name = "id_role")
+    private Role role;
 
     public User() {}
 
@@ -52,5 +57,13 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
