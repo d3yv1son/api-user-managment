@@ -7,6 +7,10 @@ import com.fametro.usermanagement.entity.User;
 import com.fametro.usermanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -21,14 +25,16 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     @PostMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public LoginResponseDto login(@RequestBody LoginBodyDto loginBody) {
+    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginBodyDto loginBody) {
+        var userPassToken = new UsernamePasswordAuthenticationToken(loginBody.email(), loginBody.password());
+        var auth = authenticationManager.authenticate(userPassToken);
+        var token = jwtService.generateToken((User) auth.getPrincipal());
 
-        Optional<User> user = userRepository.findById(Long.valueOf(1));
-
-        String token = jwtService.generateToken(user.orElse(null));
-        String ficMessage = "User was been loged";
-        return LoginResponseDto.fromEntity(token, ficMessage);
+        return ResponseEntity.ok(new LoginResponseDto(token));
     }
 }

@@ -1,7 +1,7 @@
 package com.fametro.usermanagement.Controller;
 
-import com.fametro.usermanagement.controller.dto.UserCreationDto;
-import com.fametro.usermanagement.controller.dto.UserDto;
+import com.fametro.usermanagement.Controller.dto.UserCreationDto;
+import com.fametro.usermanagement.Controller.dto.UserDto;
 import com.fametro.usermanagement.entity.User;
 import com.fametro.usermanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

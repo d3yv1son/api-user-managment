@@ -2,6 +2,7 @@ package com.fametro.usermanagement.auth;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.fametro.usermanagement.entity.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class JwtService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
             return JWT.create()
-                    .withIssuer("auth-api")
+                    .withIssuer("ums-auth")
                     .withSubject(user.getEmail())
                     .withExpiresAt(generateExpirationDate())
                     .sign(algorithm);
@@ -31,7 +32,20 @@ public class JwtService {
     }
 
     private Instant generateExpirationDate() {
-        return LocalDateTime.now().plusDays(2).toInstant(ZoneOffset.of("-04:00"));
+        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-04:00"));
+    }
+
+    public String validateToken(String token) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
+            return JWT.require(algorithm)
+                    .withIssuer("ums-auth")
+                    .build()
+                    .verify(token)
+                    .getSubject();
+        } catch (JWTVerificationException exception) {
+            throw new RuntimeException("Invalid token or token expire", exception);
+        }
     }
 
 }
