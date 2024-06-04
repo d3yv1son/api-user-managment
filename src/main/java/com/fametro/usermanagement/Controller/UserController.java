@@ -4,6 +4,7 @@ import com.fametro.usermanagement.Controller.dto.UserCreationDto;
 import com.fametro.usermanagement.Controller.dto.UserDto;
 import com.fametro.usermanagement.entity.User;
 import com.fametro.usermanagement.service.UserService;
+import com.fametro.usermanagement.service.exception.UserNotFoundExeption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,11 @@ public class  UserController {
         return users.stream()
                 .map(UserDto::fromEntity)
                 .toList();
+    }
+
+    @GetMapping("/{id}")
+    public UserDto getUserById(@PathVariable Long id) throws UserNotFoundExeption {
+        return UserDto.fromEntity( userService.findById(id));
     }
 
     @PostMapping

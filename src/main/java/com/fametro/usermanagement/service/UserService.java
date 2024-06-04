@@ -2,6 +2,7 @@ package com.fametro.usermanagement.service;
 
 import com.fametro.usermanagement.entity.User;
 import com.fametro.usermanagement.repository.UserRepository;
+import com.fametro.usermanagement.service.exception.UserNotFoundExeption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,12 @@ public class UserService {
 
     public List<User> findAll() {
         return this.userRepository.findAll();
+    }
+
+    public User findById(Long id) throws UserNotFoundExeption {
+        return userRepository
+                .findById(id)
+                .orElseThrow(UserNotFoundExeption::new);
     }
 
     public User create(User user) {
