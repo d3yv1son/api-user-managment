@@ -27,7 +27,26 @@ public class UserService {
                 .orElseThrow(UserNotFoundExeption::new);
     }
 
+    public User update(Long id, User user) throws UserNotFoundExeption {
+        User userDB = findById(id);
+
+        userDB.setEmail(user.getEmail());
+        userDB.setName(user.getName());
+        userDB.setPassword(user.getPassword());
+        userDB.setTelephone(user.getTelephone());
+
+        return userDB ;
+    }
+
     public User create(User user) {
         return this.userRepository.save(user);
+    }
+
+    public User delete(Long id) throws UserNotFoundExeption{
+        User getUser = findById(id);
+
+        userRepository.deleteById(id);
+
+        return getUser;
     }
 }
