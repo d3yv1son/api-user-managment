@@ -1,9 +1,11 @@
 package com.fametro.usermanagement.advice;
 
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.fametro.usermanagement.service.exception.NotFoundExeption;
 import jakarta.servlet.ServletException;
+import jakarta.websocket.DecodeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -46,6 +48,13 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(exeption.getMessage());
     }
+
+    @ExceptionHandler(JWTDecodeException.class)
+    public ResponseEntity<String> decodeExceptionHandler(JWTDecodeException exeption){
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(exeption.getMessage());
+    }
+
 
     @ExceptionHandler(JWTCreationException.class)
     public ResponseEntity<String> jwtCreationExceptionHandler(JWTCreationException exeption){

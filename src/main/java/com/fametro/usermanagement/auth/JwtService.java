@@ -2,12 +2,12 @@ package com.fametro.usermanagement.auth;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.fametro.usermanagement.entity.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.security.Key;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -31,7 +31,7 @@ public class JwtService {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-04:00"));
     }
 
-    public String validateToken(String token) throws JWTVerificationException {
+    public String validateToken(String token) throws JWTDecodeException, JWTVerificationException {
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
         return JWT.require(algorithm)
                 .withIssuer("ums-auth")
