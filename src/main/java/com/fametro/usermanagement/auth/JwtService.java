@@ -18,34 +18,26 @@ public class JwtService {
     @Value("${api.security.token.secret}")
     private String SECRET_KEY;
 
-    public String generateToken(User user) {
-        try {
+    public String generateToken(User user) throws JWTCreationException{
             Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
             return JWT.create()
                     .withIssuer("ums-auth")
                     .withSubject(user.getEmail())
                     .withExpiresAt(generateExpirationDate())
                     .sign(algorithm);
-        } catch (JWTCreationException exception) {
-            throw new RuntimeException("Error while generating token", exception);
-        }
     }
 
     private Instant generateExpirationDate() {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-04:00"));
     }
 
-    public String validateToken(String token) {
-        try {
-            Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
-            return JWT.require(algorithm)
-                    .withIssuer("ums-auth")
-                    .build()
-                    .verify(token)
-                    .getSubject();
-        } catch (JWTVerificationException exception) {
-            throw new RuntimeException("Invalid token or token expire", exception);
-        }
+    public String validateToken(String token) throws JWTVerificationException {
+        Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
+        return JWT.require(algorithm)
+                .withIssuer("ums-auth")
+                .build()
+                .verify(token)
+                .getSubject();
     }
 
 }

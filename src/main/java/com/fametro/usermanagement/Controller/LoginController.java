@@ -5,11 +5,13 @@ import com.fametro.usermanagement.Controller.dto.LoginResponseDto;
 import com.fametro.usermanagement.auth.JwtService;
 import com.fametro.usermanagement.entity.User;
 import com.fametro.usermanagement.repository.UserRepository;
+import com.fametro.usermanagement.service.exception.NotFoundExeption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 

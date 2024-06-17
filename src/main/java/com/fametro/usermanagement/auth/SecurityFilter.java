@@ -1,6 +1,7 @@
 package com.fametro.usermanagement.auth;
 
 import com.fametro.usermanagement.repository.UserRepository;
+import com.fametro.usermanagement.service.exception.UnauthorisedExeption;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,8 +36,8 @@ public class SecurityFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    private String recoverToken(HttpServletRequest request){
-        var authHeader =  request.getHeader("Authorization");
+    private String recoverToken(HttpServletRequest request) {
+        var authHeader = request.getHeader("Authorization");
         if (authHeader == null) return null;
         return authHeader.replace("Bearer ", "");
     }
