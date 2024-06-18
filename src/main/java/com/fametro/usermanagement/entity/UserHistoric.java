@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="userHistoric")
-
 public class UserHistoric {
 
     @Id
